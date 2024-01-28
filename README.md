@@ -237,10 +237,10 @@ docker buildx build --platform linux/amd64 -t ghcr.io/<VOTRE_ID_GITHUB>/hetic-ta
 > 
 > Votre VM ubuntu peut lancer des images compatibles avec la plateforme `linux/amd64`.
 > 
-> L'outil `buildx` de Docker devient plus important avec l'apparition des puces Appel M1 et M2 des nouveaux ordinateurs Mac.
+> L'outil `buildx` de Docker devient plus important avec l'apparition des puces Apple M1 et M2 des nouveaux ordinateurs Mac.
 > 
 > En effet, très souvent, les serveurs distants on pour leur grande majorité des processeurs Intel avec des processeurs `amd`.
-> Si vous avez un ordinateur Mac récent avec les puces Appel M1 ou M2, votre architecture de processeur est `arm`.
+> Si vous avez un ordinateur Mac récent avec les puces Apple M1 ou M2, votre architecture de processeur est `arm`.
 > Si vous souhaitez build une image Docker depuis votre Mac et lancer cette même image sur un serveur distant `amd`, vous devez utiliser la commande:
 > 
 > ```sh
