@@ -243,6 +243,7 @@ docker image push ghcr.io/VOTRE_ORG_GITHUB/hetic-tac-toe-frontend:v1
 > pour supprimer l'historique de connexion avant de vous connecter à nouveau en `ssh` avec la même clé privé à votre machine distante.
 
 ```sh
+chmod 600 <chemin_clee_privee>
 ssh-keygen -R etudiantXX.floless.fr
 ssh -i <chemin_clee_privee> ubuntu@etudiantXX.floless.fr
 ```
