@@ -201,23 +201,30 @@ Votre backend sera exposé à l'adresse `https://api.hetic-tac-toe.etudiantXX.fl
 ```
 
 Il vous faut build vos images avec le bon nom:
+
+> Note:
+> `VOTRE_ORG_GITHUB` est votre organsation github par défaut, votre identifiant de login.
+> Vous pouvez le retrouver une fois connecté à votre compte Github en cliquant sur votre icone
+> de profile en haut à droite
+> ![](images/votre-org-github.png)
+
 - Pour ceux qui sont sur windows OU linux:
   - depuis le projet `hetic-tac-toe`, dans le dossier `frontend/`
 
 ```sh
 # si vous n'êtes PAS sur un Mac avec puce Apple M1 ou M2
-docker build -t ghcr.io/<VOTRE_ID_GITHUB>/hetic-tac-toe-frontend:v1
+docker build -t ghcr.io/VOTRE_ORG_GITHUB/hetic-tac-toe-frontend:v1 .
 # sinon
-docker buildx build --platform linux/amd64 -t ghcr.io/<VOTRE_ID_GITHUB>/hetic-tac-toe-frontend:v1
+docker buildx build --platform linux/amd64 -t ghcr.io/VOTRE_ORG_GITHUB/hetic-tac-toe-frontend:v1 .
 ```
 
   - depuis le projet `hetic-tac-toe`, dans le dossuer `backend/`
 
 ```sh
 # si vous n'êtes PAS sur un Mac avec puce Apple M1 ou M2
-docker build -t ghcr.io/<VOTRE_ID_GITHUB>/hetic-tac-toe-backend:v1
+docker build -t ghcr.io/VOTRE_ORG_GITHUB/hetic-tac-toe-backend:v1 .
 # sinon
-docker buildx build --platform linux/amd64 -t ghcr.io/<VOTRE_ID_GITHUB>/hetic-tac-toe-backend:v1
+docker buildx build --platform linux/amd64 -t ghcr.io/VOTRE_ORG_GITHUB/hetic-tac-toe-backend:v1 .
 ```
 
 > Note: Un mot sur la commande docker `buildx`
@@ -255,7 +262,7 @@ docker buildx build --platform linux/amd64 -t ghcr.io/<VOTRE_ID_GITHUB>/hetic-ta
 Authentifiez vous à `ghcr.io` via la commande `docker login` en remplaçant
 - `TOKEN` par le token que vous avez généré précédemment
 - `VOTRE_ID_GITHUB` par votre identifiant Github. Vous le trouvez sur votre page de profile Github:
-![](images/votre-id-github.png)
+![](images/votre-org-github.png)
 
 > **IMPORTANT**: si vous avez des charactères spéciaux dans votre username (comme un `.`, un espace etc...),
 vous devez le retirer.
@@ -272,13 +279,13 @@ Une fois que vous voyez le message `Login Succeeded`, vous pouvez envoyer vos co
 - envoyer le conteneur du backend via la commande:
 
 ```sh
-docker image push ghcr.io/<VOTRE_ID_GITHUB>/hetic-tac-toe-backend:v1
+docker image push ghcr.io/VOTRE_ORG_GITHUB/hetic-tac-toe-backend:v1
 ```
 
 - envoyer le conteneur du frontend via la commande:
 
 ```sh
-docker image push ghcr.io/<VOTRE_ID_GITHUB>/hetic-tac-toe-frontend:v1
+docker image push ghcr.io/VOTRE_ORG_GITHUB/hetic-tac-toe-frontend:v1
 ```
 
 ### Pull de vos images depuis votre VM de chez Scaleway
@@ -313,13 +320,13 @@ Une fois `Login Succeeded`, vous pouvez récupérer vos images docker en utilian
 - pour le backend:
 
 ```sh
-docker image pull ghcr.io/<VOTRE_ID_GITHUB>/hetic-tac-toe-backend:v1
+docker image pull ghcr.io/VOTRE_ORG_GITHUB/hetic-tac-toe-backend:v1
 ```
 
 - pour le frontend:
 
 ```sh
-docker image pull ghcr.io/<VOTRE_ID_GITHUB>/hetic-tac-toe-frontend:v1
+docker image pull ghcr.io/VOTRE_ORG_GITHUB/hetic-tac-toe-frontend:v1
 ```
 
 - Vérifiez que vos images son bien présentes sur votre VM:
@@ -333,7 +340,7 @@ docker images ls
 **Objectif**: Lancez les conteneurs avec les bons `label` Docker pour que `Traefik` expose hetic tac toe sur internet
 avec le bon nom de domaine.
 
-- Lancez votre backend avec la commande suivante (en remplaçant `etudiantXX` par votre identifiant d'étudiant et `<VOTRE_ID_GITHUB>` par votre identifiant Github):
+- Lancez votre backend avec la commande suivante (en remplaçant `etudiantXX` par votre identifiant d'étudiant et `VOTRE_ORG_GITHUB` par votre identifiant Github):
 
 ```sh
 docker container run -d --network web \
@@ -343,10 +350,10 @@ docker container run -d --network web \
     --label "traefik.http.routers.hetic-tac-toe-backend.tls.certresolver=letsencrypt" \
     --label "traefik.enable=true" \
     --label "traefik.docker.network=web" \
-    ghcr.io/<VOTRE_ID_GITHUB>/hetic-tac-toe-backend:v1
+    ghcr.io/VOTRE_ORG_GITHUB/hetic-tac-toe-backend:v1
 ```
 
-- Lancez votre frontend avec la commande suivante (en remplaçant `etudiantXX` par votre identifiant d'étudiant et `<VOTRE_ID_GITHUB>` par votre identifiant Github):
+- Lancez votre frontend avec la commande suivante (en remplaçant `etudiantXX` par votre identifiant d'étudiant et `VOTRE_ORG_GITHUB` par votre identifiant Github):
 
 ```sh
 docker container run -d --network web \
@@ -356,7 +363,7 @@ docker container run -d --network web \
     --label "traefik.http.routers.hetic-tac-toe-frontend.tls.certresolver=letsencrypt" \
     --label "traefik.enable=true" \
     --label "traefik.docker.network=web" \
-    ghcr.io/<VOTRE_ID_GITHUB>/hetic-tac-toe-frontend:v1
+    ghcr.io/VOTRE_ORG_GITHUB/hetic-tac-toe-frontend:v1
 ```
 
 C'est tout! Votre application devrait être déployée.
