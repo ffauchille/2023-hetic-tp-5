@@ -294,6 +294,7 @@ docker container run -d --network web \
     --label "traefik.http.routers.hetic-tac-toe-backend.rule=Host(\`api.hetic-tac-toe.etudiantXX.floless.fr\`)" \
     --label "traefik.http.routers.hetic-tac-toe-backend.tls=true" \
     --label "traefik.http.routers.hetic-tac-toe-backend.tls.certresolver=letsencrypt" \
+    --label "traefik.http.services.hetic-tac-toe-backend.loadbalancer.server.port=8000" \
     --label "traefik.enable=true" \
     --label "traefik.docker.network=web" \
     ghcr.io/VOTRE_ORG_GITHUB/hetic-tac-toe-backend:v1
